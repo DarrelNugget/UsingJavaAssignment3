@@ -3,7 +3,7 @@
 // Do any of these variables need to be initialized when the page is loaded? 
 // When do they need to be reset or updated?
 
-const costPerDayFull = 35; 
+const costPerDayFull = 40; 
 const costPerDayHalf = 20; 
 let selectedDays = []; 
 let dailyRate = costPerDayFull; 
@@ -13,8 +13,8 @@ let dailyRate = costPerDayFull;
 // added challenge: don't update the dayCounter if the same day is clicked more than once. hint: .classList.contains() might be helpful here!
 
 const dayElements = document.querySelectorAll('.day-selector li');
-dayElements.forEach(day => {
-    day.addEventListener('click', () => {
+dayElements.forEach(function(day) {
+    day.addEventListener('click', function() {
         const dayClicked = day.id;
         if (selectedDays.includes(dayClicked)) {
             selectedDays.splice(selectedDays.indexOf(dayClicked), 1);
@@ -32,9 +32,11 @@ dayElements.forEach(day => {
 // when the clear-button is clicked, the "clicked" class is removed from all days, any other relevant variables are reset, and the calculated cost is set to 0.
 
 const clearButton = document.getElementById('clear-button');
-clearButton.addEventListener('click', () => {
+clearButton.addEventListener('click', function() {
     selectedDays = [];
-    dayElements.forEach(day => day.classList.remove('clicked'));
+    dayElements.forEach(function(day) {
+        day.classList.remove('clicked');
+    });
     dailyRate = costPerDayFull;
     updateCost();
 });
@@ -44,7 +46,7 @@ clearButton.addEventListener('click', () => {
 
 const halfDayButton = document.getElementById('half');
 
-halfDayButton.addEventListener('click', () => {
+halfDayButton.addEventListener('click', function() {
     dailyRate = costPerDayHalf;
     halfDayButton.classList.add('clicked');
     fullDayButton.classList.remove('clicked');
@@ -54,7 +56,7 @@ halfDayButton.addEventListener('click', () => {
 
 const fullDayButton = document.getElementById('full');
 
-fullDayButton.addEventListener('click', () => {
+fullDayButton.addEventListener('click', function() {
     dailyRate = costPerDayFull;
     fullDayButton.classList.add('clicked');
     halfDayButton.classList.remove('clicked');
